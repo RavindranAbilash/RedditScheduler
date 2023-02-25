@@ -23,7 +23,7 @@ from postqueue import posts
 ###############################################################################
 
 def submitPost(sub, title, text, link, image, video, parent, flairid, flairtext, collectionid, sort, commenttext, date, spoiler, nsfw, lock, contest, dontnotify, distinguish, sticky, lockcomment, distinguishcomment, stickycomment, wait):
-	currentDate = str(datetime.datetime.now().month) + "," + str(datetime.datetime.now().day)
+	currentDate = str(datetime.datetime.now().year) + "," + str(datetime.datetime.now().month) + "," + str(datetime.datetime.now().day)
 	if date != currentDate:
 		f.write("\n\ntoday is "+ currentDate+ "  --  post is scheduled for "+date)
 		return 1
@@ -100,7 +100,7 @@ def submitPost(sub, title, text, link, image, video, parent, flairid, flairtext,
 	return 0
 
 def isdate(futureTime):
-	currentTime = str(datetime.datetime.now().month) + "," + str(datetime.datetime.now().day)
+	currentTime = str(datetime.datetime.now().year) + "," + str(datetime.datetime.now().month) + "," + str(datetime.datetime.now().day)
 	return futureTime == currentTime
 
 def tolink(permalink):
@@ -110,7 +110,7 @@ def tolink(permalink):
 if __name__ == "__main__":
 	f.write("\n---------------------\nStarted")
 	for post in posts:	
-		postspecs = {"sub": "test", "title": "test", "text": "", "link": None, "image": None, "video": None, "parent": None, "flairid": None, "flairtext": None, "collectionid": None, "sort": None, "commenttext": None, "date": "7,23", "spoiler": False, "nsfw": False, "lock": False, "contest": False, "dontnotify": False, "distinguish": False, "sticky": False, "lockcomment": False, "distinguishcomment": False, "stickycomment": False, "wait": False}
+		postspecs = {"sub": "test", "title": "test", "text": "", "link": None, "image": None, "video": None, "parent": None, "flairid": None, "flairtext": None, "collectionid": None, "sort": None, "commenttext": None, "date": "2023,7,23", "spoiler": False, "nsfw": False, "lock": False, "contest": False, "dontnotify": False, "distinguish": False, "sticky": False, "lockcomment": False, "distinguishcomment": False, "stickycomment": False, "wait": False}
 		postspecs.update(post)
 		if postspecs["link"] != None:
 			postspecs["text"] = None

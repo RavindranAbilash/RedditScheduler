@@ -30,6 +30,7 @@ This app is designed to be scheduled to run daily at whatever time you like post
 Any posts that you would like to schedule should go in `postqueue.py`. The format is pretty straightfoward and some examples are already there.
 
 ```
+
 posts = [
 
 #---------------------#
@@ -37,7 +38,7 @@ posts = [
 "title": "titletext",
 "text": "bodytext",
 "commenttext": "commenttext",
-"date": "8,11"},
+"date": "2023,2,25"},
 
 #---------------------#
 
@@ -45,7 +46,7 @@ posts = [
 "title": "titletext",
 "link": "linkurl",
 "commenttext": "commenttext",
-"date": "8,18"},
+"date": "2023,8,18"},
 
 #---------------------#
 
@@ -53,9 +54,11 @@ posts = [
 "title": "titletext",
 "image": "path/to/image",
 "commenttext": "commenttext",
-"date": "7,20"}
+"date": "2023,7,20"},
 
 ]
+
+
 ```
 
 All that this file essentially needs is a list called `post` containing a dictionary for each post.

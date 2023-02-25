@@ -6,7 +6,7 @@ posts = [
 "title": "titletext",
 "text": "bodytext",
 "commenttext": "commenttext",
-"date": "2,25"},
+"date": "2023,2,25"},
 
 #---------------------#
 
@@ -14,7 +14,7 @@ posts = [
 "title": "titletext",
 "link": "linkurl",
 "commenttext": "commenttext",
-"date": "8,18"},
+"date": "2023,8,18"},
 
 #---------------------#
 
@@ -22,7 +22,7 @@ posts = [
 "title": "titletext",
 "image": "path/to/image",
 "commenttext": "commenttext",
-"date": "7,20"},
+"date": "2023,7,20"},
 
 ]
 
