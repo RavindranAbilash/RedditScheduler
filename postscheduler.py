@@ -1,9 +1,9 @@
 
-
 import praw
 import datetime
 import time
 from praw.exceptions import APIException
+import pandas as pd
 
 f= open("postscheduler.log","a+")
 
@@ -12,12 +12,12 @@ reddit = praw.Reddit(
 	client_id='',
 	client_secret='',
 	password='',
-	user_agent='Your Name',
+	user_agent='',
 	username=''
 )
 
 
-from postqueue import posts
+
 ###############################################################################
 ###############################################################################
 ###############################################################################
@@ -109,9 +109,20 @@ def tolink(permalink):
 #Main
 if __name__ == "__main__":
 	f.write("\n---------------------\nStarted")
-	for post in posts:	
+	df = pd.read_csv('post.csv')
+	data = df.values.tolist()
+	for post in data:
+		if(str(post[4])=="nan"):
+			post[4] = None	
+		if(str(post[5])=="nan"):
+			post[5] = None
+		if(str(post[6])=="nan"):
+			post[6] = None
+		if(str(post[7])=="nan"):
+			post[7] = None
+		dict = {"sub": post[0], "title": post[1],"commenttext":post[2],"date":post[3], "text":post[4],"link":post[5],"image":post[6],"video":post[7]}	
 		postspecs = {"sub": "test", "title": "test", "text": "", "link": None, "image": None, "video": None, "parent": None, "flairid": None, "flairtext": None, "collectionid": None, "sort": None, "commenttext": None, "date": "2023,7,23", "spoiler": False, "nsfw": False, "lock": False, "contest": False, "dontnotify": False, "distinguish": False, "sticky": False, "lockcomment": False, "distinguishcomment": False, "stickycomment": False, "wait": False}
-		postspecs.update(post)
+		postspecs.update(dict)
 		if postspecs["link"] != None:
 			postspecs["text"] = None
 		err = submitPost(sub=postspecs["sub"], title=postspecs["title"], text=postspecs["text"], link=postspecs["link"], image=postspecs["image"], video=postspecs["video"], parent=postspecs["parent"], flairid=postspecs["flairid"], flairtext=postspecs["flairtext"], collectionid=postspecs["collectionid"], sort=postspecs["sort"], commenttext=postspecs["commenttext"], date=postspecs["date"], spoiler=postspecs["spoiler"], nsfw=postspecs["nsfw"], lock=postspecs["lock"], contest=postspecs["contest"], dontnotify=postspecs["dontnotify"], distinguish=postspecs["distinguish"], sticky=postspecs["sticky"], lockcomment=postspecs["lockcomment"], distinguishcomment=postspecs["distinguishcomment"], stickycomment=postspecs["stickycomment"], wait=postspecs["wait"])
@@ -119,3 +130,4 @@ if __name__ == "__main__":
 			submitPost(sub=postspecs["sub"], title=postspecs["title"], text=postspecs["text"], link=postspecs["link"], image=postspecs["image"], video=postspecs["video"], parent=postspecs["parent"], flairid=postspecs["flairid"], flairtext=postspecs["flairtext"], collectionid=postspecs["collectionid"], sort=postspecs["sort"], commenttext=postspecs["commenttext"], date=postspecs["date"], spoiler=postspecs["spoiler"], nsfw=postspecs["nsfw"], lock=postspecs["lock"], contest=postspecs["contest"], dontnotify=postspecs["dontnotify"], distinguish=postspecs["distinguish"], sticky=postspecs["sticky"], lockcomment=postspecs["lockcomment"], distinguishcomment=postspecs["distinguishcomment"], stickycomment=postspecs["stickycomment"], wait=postspecs["wait"])
 	f.write("\n\nFinished\n---------------------\n")
 	f.close()
+	print("Your posts are posted")
